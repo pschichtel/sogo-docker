@@ -8,6 +8,8 @@ RUN echo "deb https://packages.inverse.ca/SOGo/nightly/4/debian/ buster buster" 
  && apt-get update \
  && apt-get install -y --no-install-recommends sogo sope4.9-gdl1-postgresql sope4.9-gdl1-mysql cron apache2 
 
+RUN a2enmod headers proxy proxy_http rewrite ssl
+
 USER "sogo"
 
 CMD [ "/usr/sbin/sogod", "-WOUseWatchDog", "NO", "-WOLogFile", "-", "-WONoDetach", "YES", "-WOPidFile", "/var/run/sogo/sogo.pid" ]
