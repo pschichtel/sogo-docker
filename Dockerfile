@@ -12,5 +12,7 @@ RUN a2enmod headers proxy proxy_http rewrite ssl
 
 USER "sogo"
 
-CMD [ "/usr/sbin/sogod", "-WOUseWatchDog", "NO", "-WOLogFile", "-", "-WONoDetach", "YES", "-WOPidFile", "/var/run/sogo/sogo.pid" ]
+ENV PREFORK=3
+
+CMD [ "/usr/sbin/sogod", "-WOUseWatchDog", "NO", "-WOLogFile", "-", "-WONoDetach", "YES", "-WOWorkersCount", "${PREFORK}"]
 
